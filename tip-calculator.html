@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+	<main>
+		<label for="bill-amount">Bill Amount:</label>
+		<input id="bill-amount" type="number">
+
+		<label for="tip-percent">Tip Percentage:</label>
+		<input id="tip-percent" type="number">
+		
+		<div id="display"></div>
+	</main>
+	
+	<script>
+    
+		const billAmountInput = document.querySelector('#bill-amount')
+		const tipPercentInput = document.querySelector('#tip-percent')
+		const display = document.querySelector('#display')
+
+		function calculateTip(billAmount,tipPercent) {
+			const tipAmount = billAmount * (tipPercent / 100)
+			return tipAmount
+		}
+
+		function updateDisplay () {
+			const billAmount = +billAmountInput.value
+			const tipPercent = +tipPercentInput.value
+
+			const tipAmount = calculateTip(billAmount,tipPercent)
+			display.innerHTML = `Bill: $${billAmount.toFixed(2)} | Tip %: ${tipPercent} | Tip Amount: $${tipAmount.toFixed(2)}`
+		}
+
+		billAmountInput.addEventListener(`input`, updateDisplay)
+		tipPercentInput.addEventListener(`input`, updateDisplay)
+	</script>
+
+	<style>
+		html {
+			font-family: Arial, Helvetica, sans-serif;
+			height: 100%;
+		}
+
+		body {
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		main{
+			display: flex; 
+			flex-direction: column; 
+			gap: 15px;	
+			padding: 25px; 
+    		border: 1px solid black; 
+    		border-radius: 15px; 
+		}
+
+		input {
+			font-size: 15px;
+			border: 1px solid black;
+			border-radius: 15px; 
+			padding: 8px;
+			width: 300px;
+			height: 40px;
+		}
+	</style>
+	
+</body>
+</html>
